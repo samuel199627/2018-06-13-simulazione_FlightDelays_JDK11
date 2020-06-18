@@ -1,8 +1,10 @@
 package it.polito.tdp.flightdelays;
 
 import java.net.URL;
+
 import java.util.ResourceBundle;
 
+import it.polito.tdp.flightdelays.model.Airline;
 import it.polito.tdp.flightdelays.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,7 +27,7 @@ public class FXMLController {
     private TextArea txtResult;
 
     @FXML
-    private ComboBox<?> cmbBoxLineaAerea;
+    private ComboBox<Airline> cmbBoxLineaAerea;
 
     @FXML
     private Button caricaVoliBtn;
@@ -38,12 +40,37 @@ public class FXMLController {
 
     @FXML
     void doCaricaVoli(ActionEvent event) {
+    	
+    	txtResult.clear();
+    	Airline selezionata=cmbBoxLineaAerea.getValue();
+    	if(selezionata==null) {
+    		txtResult.appendText("DEVI SELEZIONARE UNA LINEA AEREA!");
+    		return;
+    	}
+    	
+    	
+    	txtResult.appendText(model.creaGrafo(selezionata));
 
     }
 
     @FXML
     void doSimula(ActionEvent event) {
-
+    	txtResult.clear();
+    	
+    	int numVoli;
+    	int numPasseggeri;
+    	try {
+    		numVoli=Integer.parseInt(numeroVoliTxtInput.getText());
+    		numPasseggeri=Integer.parseInt(numeroPasseggeriTxtInput.getText());
+    		
+    	}
+    	catch(NumberFormatException e){
+    		txtResult.appendText("parametri inseriti non corretti!!");
+    		return;
+    	}
+    	
+    	
+    	txtResult.appendText(model.simulazione(numPasseggeri, numVoli));
     }
 
     @FXML
@@ -58,5 +85,7 @@ public class FXMLController {
 
 	public void setModel(Model model) {
 		this.model = model;
+		cmbBoxLineaAerea.getItems().clear();
+		cmbBoxLineaAerea.getItems().addAll(model.caricaLinee());
 	}
 }

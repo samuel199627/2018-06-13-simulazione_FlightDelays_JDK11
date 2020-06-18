@@ -1,6 +1,6 @@
 package it.polito.tdp.flightdelays.model;
 
-public class Airline {
+public class Airline implements Comparable<Airline>{
 	
 	private String id;
 	private String name;
@@ -36,4 +36,12 @@ public class Airline {
 		builder.append("]");
 		return builder.toString();
 	}
+
+	@Override
+	public int compareTo(Airline o) {
+		// TODO Auto-generated method stub
+		return this.getId().compareTo(o.getId());
+	}
+	
+	
 }

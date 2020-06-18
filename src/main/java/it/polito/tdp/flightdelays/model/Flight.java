@@ -7,8 +7,8 @@ public class Flight {
 	private int id;
 	private String airlineId;
 	private int flightNumber;
-	private String originAirportId;
-	private String destinationAirportId;
+	private Airport originAirportId;
+	private Airport destinationAirportId;
 	private LocalDateTime scheduledDepartureDate;
 	private LocalDateTime arrivalDate;
 	private int departureDelay;
@@ -16,7 +16,7 @@ public class Flight {
 	private int airTime;
 	private int distance;
 	
-	public Flight(int id, String airlineId, int flightNumber, String originAirportId, String destinationAirportId,
+	public Flight(int id, String airlineId, int flightNumber, Airport originAirportId, Airport destinationAirportId,
 			LocalDateTime scheduledDepartureDate, LocalDateTime arrivalDate, int departureDelay, int arrivalDelay,
 			int airTime, int distance) {
 		this.id = id;
@@ -56,19 +56,19 @@ public class Flight {
 		this.flightNumber = flightNumber;
 	}
 
-	public String getOriginAirportId() {
+	public Airport getOriginAirportId() {
 		return originAirportId;
 	}
 
-	public void setOriginAirportId(String originAirportId) {
+	public void setOriginAirportId(Airport originAirportId) {
 		this.originAirportId = originAirportId;
 	}
 
-	public String getDestinationAirportId() {
+	public Airport getDestinationAirportId() {
 		return destinationAirportId;
 	}
 
-	public void setDestinationAirportId(String destinationAirportId) {
+	public void setDestinationAirportId(Airport destinationAirportId) {
 		this.destinationAirportId = destinationAirportId;
 	}
 
